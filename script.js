@@ -15,10 +15,10 @@
       var e = document.getElementById("product").value;
       
       // Obtener el cuerpo de la tabla (tbody)
-      var lista = document.getElementById("lista-carrito tbody").getElementsByTagName('tbody')[0];
+      var lista = document.getElementById("product").getElementsByTagName('tbody')[0];
       
       // Crear una nueva fila (tr)
-      var nuevaFila = tabla.insertRow();
+      var nuevaFila = tabla.insertRow("product");
       
       // Crear una celda para el producto
       var celdaProducto = nuevaFila.insertCell(0);
