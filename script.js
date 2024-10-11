@@ -1,39 +1,70 @@
+/* lo primero que vamos a hacer es crear una variable de tipo
+constante*/
+const carrito = document.getElementById('carrito');
+const elementos1 = document.getElementById('lista-1');
+const lista = document.querySelector('#lista-carrito');
+/*con signo # para selecionar una clase */
+const vaciarCarritoBtn = document.getElementById('vaciar-carrito');
 
-//podrías hacer algo asi
- // Función para eliminar una fila
-    function eliminarElemento(e) {
-      // Obtener la fila que contiene el botón
-      var elemento = boton.parentNode.parentNode;
-      
-      // Eliminar la fila de la tabla
-      elemento.parentNode.removeChild(elemento);
+/*llamar a la funcion */
+cargarEventLiteners();
+function cargarEventLiteners(){
+    elementos1.addEventListener('click', comprarElemento);
+    carrito.addEventListener('click', eliminarElemento);
+    vaciarCarritoBtn.addEventListener('click', vaciarCarrito);
+    
+}
+
+function comprarElemento(e){
+    e.preventDefault();
+    if(e.target.classList.contains('agregar-carrito')){
+        const elemento = e.target.parentElement.parentElement;
+        leerDatosElemento(elemento);
     }
-// y esto para agregar el producto
- // Función para agregar productos a la tabla
-    function agregarProducto() {
-      // Obtener el producto seleccionado
-      var e = document.getElementById("product").value;
-      
-      // Obtener el cuerpo de la tabla (tbody)
-      var lista = document.getElementById("product").getElementsByTagName('tbody')[0];
-      
-      // Crear una nueva fila (tr)
-      var nuevaFila = tabla.insertRow("product");
-      
-      // Crear una celda para el producto
-      var celdaProducto = nuevaFila.insertCell(0);
-      celdaProducto.textContent = productoSeleccionado;
-      
-      // Crear una celda para el botón de eliminar
-      var celdaAccion = nuevaFila.insertCell(1);
-      var botonEliminar = document.createElement("agregar-carrito btn-2");
-      botonEliminar.textContent = "Eliminar";
-      
-      // Asignar la función de eliminar fila al botón
-      botonEliminar.onclick = function() {
-        eliminarFila(this);
-      };
-      
-      // Agregar el botón a la celda de acción
-      celdaAccion.appendChild(botonEliminar);
+}
+/* */
+function leerDatosElemento(elemento){
+    const infoElemento = {
+        imagen: elemento.querySelector('img').src,
+        titulo: elemento.querySelector('h3').textContent,
+        precio: elemento.querySelector('.precio').textContent,
+        id:elemento.querySelector('a').getAttribute('data-id'),
     }
+    insertarCarrito(infoElemento);
+}
+
+function insertarCarrito(elemento){
+    const row = document.createElement('tr');
+    row.innerHTML = `
+       <td>
+            <img src="${elemento.imagen}" width=100 >
+        </td>
+        <td>
+            ${elemento.titulo}
+        </td>
+        <td>
+            ${elemento.precio}
+        </td>
+        <td>
+            <a herf="#" class="borrar" data-id="${elemento.id}">X</a>
+        </td>`;
+    lista.appendChild(row);
+}
+
+function eliminarElemento(e){
+    e.preventDefault();
+    let elemento,
+    elementoid;
+    if(e.target.classList.contains('borrar')){
+        e.target.parentElement.parentElement.remove();
+        elemento = e.target.parentElement.parentElement;
+        elemento = elemento.querySelector('a').getAttribute('data-id');
+    }
+}
+
+function vaciarCarrito(){
+    while(lista.firstChild){
+        lista.removeChild(lista.firstChild);
+    }
+    return false;
+}
