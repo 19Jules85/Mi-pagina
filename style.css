@@ -98,7 +98,9 @@ th, td{
 }
 .header-img{
     flex-basis: 50%;
-    text-align: center;
+    height: 100%;
+    text-align: center; 
+    
 }
 .header-text{
     flex-basis: 50%;
@@ -128,6 +130,7 @@ th, td{
     padding: 20px 0 0 0;
     display: flex;
     justify-content: space-between;
+
 }
 .ofert-1{
     display: flex;
@@ -139,9 +142,11 @@ th, td{
 .ofert-img{
     flex-basis: 50%;
     margin-right: 15px;
+    margin: 0 5px;
 }
-.ofert.img img{
+.ofert-img img{
     width: 250px;
+
 }
 .ofert-text{
     flex-basis: 50%;
@@ -275,6 +280,14 @@ condicionalmente utilizando las reglas de arroba CSS
 @media e @import . Para segmentar medios específicos 
 para <style> , <link> , <source> y otros HTML con el 
 atributo media*/
+.titulo-final{
+    text-align: right;
+    font-size: 24px;
+    margin: 20px 0 0 0;
+    color: #FFFFFF;
+    padding: 30px;
+}
+
 @media (max-width:991px) {
     .menu{
         padding: 20px;
@@ -371,4 +384,8 @@ atributo media*/
         text-align: center;
     }
 
+
+    .titulo-final{
+    font-size: 20px;
+    }
 }

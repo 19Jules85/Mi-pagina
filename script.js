@@ -1,4 +1,4 @@
-/* lo primero que vamos a hacer es crear una variable de tipo
+/* lo primero que vamos a crear una variable de tipo
 constante*/
 const carrito = document.getElementById('carrito');
 const elementos1 = document.getElementById('lista-1');
